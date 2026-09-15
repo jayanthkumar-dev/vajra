@@ -1,0 +1,61 @@
+{
+  "dataset_source": "provided_csv",
+  "synthetic_dataset": false,
+  "seed": 42,
+  "feature_names": [
+    "packet_count",
+    "byte_count",
+    "packets_per_sec",
+    "bytes_per_sec",
+    "mean_packet_size",
+    "packet_size_variation",
+    "mean_inter_arrival_time",
+    "inter_arrival_variation",
+    "burst_count",
+    "max_burst_size",
+    "burst_packet_fraction",
+    "destination_fan_out",
+    "destination_port_fan_out"
+  ],
+  "split_counts": {
+    "train": 144,
+    "validation": 48,
+    "test": 48
+  },
+  "validation": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": [
+      [
+        24,
+        0
+      ],
+      [
+        0,
+        24
+      ]
+    ]
+  },
+  "test": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": [
+      [
+        24,
+        0
+      ],
+      [
+        0,
+        24
+      ]
+    ],
+    "inference_total_seconds": 0.0005124,
+    "inference_seconds_per_sample": 1.0675e-05,
+    "inference_sample_count": 48
+  },
+  "model_artifact": "artifacts\\vajra_logistic_regression_v2.joblib",
+  "preprocessing_fit_on": "train_only",
+  "ml_role": "complements deterministic and statistical detectors"
+}

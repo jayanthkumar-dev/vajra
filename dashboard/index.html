@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VAJRA // Passive Threat Observatory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark">V</div>
+        <div>
+          <p class="eyebrow">NTRO / SIH26145</p>
+          <h1>VAJRA <span>//</span> PASSIVE THREAT OBSERVATORY</h1>
+        </div>
+      </div>
+      <div class="connection-cluster">
+        <div class="status-chip" id="api-status"><i></i><span>API CHECKING</span></div>
+        <div class="status-chip" id="stream-status"><i></i><span>STREAM CONNECTING</span></div>
+        <button class="icon-button" id="refresh-button" title="Refresh telemetry" aria-label="Refresh telemetry">↻</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="view-banner"><p class="eyebrow">00 / SOC OVERVIEW</p><h2>Operational command surface</h2><span class="section-note">LOCAL / READ-ONLY / PASSIVE OBSERVATION</span></section>
+      <section class="system-strip">
+        <div class="system-card accent-green">
+          <div class="card-label">OBSERVATION MODE</div>
+          <strong>RX / READ-ONLY</strong>
+          <small>No packets transmitted by VAJRA</small>
+        </div>
+        <div class="system-card">
+          <div class="card-label">SYSTEM HEALTH / PIPELINE</div>
+          <strong id="health-value">CHECKING</strong>
+          <small id="health-detail">Awaiting backend response</small>
+        </div>
+        <div class="system-card">
+          <div class="card-label">ML STATUS</div>
+          <strong id="ml-value">NOT LOADED</strong>
+          <small>Offline experiment remains separate</small>
+        </div>
+        <div class="system-card">
+          <div class="card-label">DATA PROVENANCE</div>
+          <strong>OBSERVED / UNSPECIFIED</strong>
+          <small>Label synthetic/lab captures at source</small>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div><p class="eyebrow">01 / LIVE TRAFFIC MONITOR</p><h2>Observed traffic</h2></div>
+        <span class="section-note" id="last-seen">LAST SEEN // NONE</span>
+      </section>
+      <section class="metric-grid" id="traffic-metrics">
+        <div class="metric-card"><span>PACKETS OBSERVED</span><strong data-metric="packet_count">--</strong></div>
+        <div class="metric-card"><span>BYTES OBSERVED</span><strong data-metric="byte_count">--</strong></div>
+        <div class="metric-card"><span>ACTIVE FLOWS</span><strong id="active-flow-count">--</strong></div>
+        <div class="metric-card"><span>PROTOCOLS</span><strong id="protocol-count">--</strong></div>
+      </section>
+      <section class="telemetry-band">
+        <div class="panel-heading"><span>PROTOCOL DISTRIBUTION</span><span class="muted">BACKEND VALUES</span></div>
+        <div id="protocol-bars" class="bar-list"><div class="empty-state">No observed traffic</div></div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel flows-panel">
+          <div class="panel-heading"><span>02 / ACTIVE DIRECTIONAL FLOWS</span><span class="muted" id="flow-count-label">0 FLOWS</span></div>
+          <div class="table-wrap"><table><thead><tr><th>FLOW ID</th><th>OBSERVED DIRECTION</th><th>PROTO</th><th>PKTS</th><th>BYTES</th><th>DURATION</th></tr></thead><tbody id="flows-body"></tbody></table></div>
+        </section>
+        <section class="panel details-panel">
+          <div class="panel-heading"><span>FLOW DETAILS</span><span class="muted">SELECT A ROW</span></div>
+          <div id="flow-detail" class="empty-state">Select an observed flow to inspect directional counters.</div>
+        </section>
+      </div>
+
+      <div class="content-grid alerts-grid">
+        <section class="panel alerts-panel">
+          <div class="panel-heading"><span>03 / ALERT INVESTIGATION</span><span class="muted" id="alert-count-label">0 ALERTS</span></div>
+          <div id="alerts-list" class="alert-list"><div class="empty-state">No alerts observed</div></div>
+        </section>
+        <section class="panel evidence-panel">
+          <div class="panel-heading"><span>ALERT INVESTIGATION</span><span class="muted">EVIDENCE</span></div>
+          <div id="alert-detail" class="empty-state">Select an alert to inspect supporting evidence.</div>
+        </section>
+      </div>
+
+      <section class="panel analytics-panel">
+        <div class="panel-heading"><span>05 / THREAT ANALYTICS</span><span class="muted">DERIVED FROM RECENT ALERTS</span></div>
+        <div id="threat-analytics" class="analytics-grid"><div class="empty-state">No alerts observed</div></div>
+      </section>
+
+      <section class="content-grid lower-grid">
+        <section class="panel stream-panel">
+          <div class="panel-heading"><span>04 / LIVE ALERT STREAM</span><span class="live-indicator"><i></i> SSE</span></div>
+          <div id="stream-list" class="stream-list"><div class="empty-state">Waiting for streamed alerts</div></div>
+        </section>
+        <section class="panel detectors-panel">
+          <div class="panel-heading"><span>06 / DETECTION PERFORMANCE</span><span class="muted">RUNTIME COUNTERS</span></div>
+          <div id="detectors-list" class="detectors-list"><div class="empty-state">No detector data</div></div>
+        </section>
+      </section>
+    </main>
+    <footer><span>VAJRA / LOCAL OBSERVATION SURFACE</span><span id="updated-at">UPDATED // --</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

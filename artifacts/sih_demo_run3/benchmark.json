@@ -1,0 +1,10 @@
+{
+  "provenance": "synthetic/lab traffic generated locally",
+  "packet_count": 5000,
+  "flow_count": 25,
+  "elapsed_seconds": 2.211961300112307,
+  "packets_per_second": 2260.437377338445,
+  "flows_per_second": 11.302186886692224,
+  "processing_latency_seconds": 2.211961300112307,
+  "processing_latency_seconds_per_packet": 0.0004423922600224614
+}

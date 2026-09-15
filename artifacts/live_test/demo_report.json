@@ -1,0 +1,836 @@
+{
+  "provenance": "synthetic/lab traffic generated locally; not real-world traffic",
+  "reports": {
+    "benign_traffic": {
+      "result": {
+        "status": "benign_no_alert",
+        "detected_classes": [],
+        "expected_classes": [],
+        "limitation": null,
+        "evidence_present": true,
+        "api_alert_count": 0,
+        "sse_alert_received": false
+      },
+      "details": {
+        "scenario": "benign_traffic",
+        "pcap": "artifacts\\live_test\\benign_traffic.pcap",
+        "ingest": {
+          "packets_processed": 5,
+          "alerts_emitted": 0,
+          "active_flow_count": 1
+        },
+        "traffic": {
+          "packet_count": 5,
+          "byte_count": 370,
+          "protocol_distribution": {
+            "TCP": 5
+          },
+          "last_seen": "2023-11-14T22:13:21.600000+00:00"
+        },
+        "flows": {
+          "active_flow_count": 1,
+          "flows": [
+            {
+              "flow_id": "039ad0a414bb64d1642ba20934c6154bf44f70f981327361379d4f0416629e56",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 443,
+              "protocol": "TCP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:21.600000+00:00",
+              "duration_seconds": 1.6,
+              "packet_count": 5,
+              "byte_count": 370
+            }
+          ]
+        },
+        "alerts": [],
+        "detectors": {
+          "ml_status": "offline_experiment_not_loaded",
+          "detectors": {
+            "VolumetricUdpDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ReconnaissanceDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "BeaconingDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "DnsAnomalyDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ExfiltrationVolumeDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "EncryptedSessionDetector": {
+              "evaluations": 5,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            }
+          }
+        },
+        "sse_alert_received": false,
+        "sse_alert": null
+      }
+    },
+    "udp_volumetric_anomaly": {
+      "result": {
+        "status": "detected",
+        "detected_classes": [
+          "c2_beaconing_periodicity",
+          "volumetric_udp_anomaly"
+        ],
+        "expected_classes": [
+          "volumetric_udp_anomaly"
+        ],
+        "limitation": null,
+        "evidence_present": true,
+        "api_alert_count": 2,
+        "sse_alert_received": true
+      },
+      "details": {
+        "scenario": "udp_volumetric_anomaly",
+        "pcap": "artifacts\\live_test\\udp_volumetric_anomaly.pcap",
+        "ingest": {
+          "packets_processed": 100,
+          "alerts_emitted": 2,
+          "active_flow_count": 1
+        },
+        "traffic": {
+          "packet_count": 100,
+          "byte_count": 24200,
+          "protocol_distribution": {
+            "UDP": 100
+          },
+          "last_seen": "2023-11-14T22:13:20.990000+00:00"
+        },
+        "flows": {
+          "active_flow_count": 1,
+          "flows": [
+            {
+              "flow_id": "4d9ca9e9371c16c92f9b2acbddafa2548340fff3e3494c73e6d7ad8c1826afc0",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 53,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20.990000+00:00",
+              "duration_seconds": 0.99,
+              "packet_count": 100,
+              "byte_count": 24200
+            }
+          ]
+        },
+        "alerts": [
+          {
+            "timestamp": "2023-11-14T22:13:20.049999+00:00",
+            "alert_id": "7006ee350c81ab5ee70b3c36903d693bcf94e24c78915215a4ff409476a47c97",
+            "flow_id": "4d9ca9e9371c16c92f9b2acbddafa2548340fff3e3494c73e6d7ad8c1826afc0",
+            "flow": {
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "protocol": "UDP",
+              "source_port": 40000,
+              "destination_port": 53
+            },
+            "threat_class": "c2_beaconing_periodicity",
+            "severity": "critical",
+            "score": 1.0,
+            "score_method": "matched_signals_fraction",
+            "detector_source": "statistical.c2_beaconing_periodicity",
+            "detection_method": "statistical",
+            "evidence": {
+              "packet_count": 6.0,
+              "mean_inter_arrival_time": 0.0099998,
+              "inter_arrival_variation": 4.0000000000040005e-07,
+              "inter_arrival_coefficient": 4.000080001604033e-05
+            },
+            "feature_values": {
+              "packet_count": 6.0,
+              "mean_inter_arrival_time": 0.0099998,
+              "inter_arrival_variation": 4.0000000000040005e-07,
+              "inter_arrival_coefficient": 4.000080001604033e-05
+            },
+            "explanation": "Deterministic statistical detector matched 2/2 configured signals: the observed inter-arrival times have low relative variation; this is a heuristic score, not a probability or trained-model confidence."
+          },
+          {
+            "timestamp": "2023-11-14T22:13:20.010000+00:00",
+            "alert_id": "b432ea8de7d3165d208dd1e362c6115eeafdbb93ef1b3432d068db22959e9276",
+            "flow_id": "4d9ca9e9371c16c92f9b2acbddafa2548340fff3e3494c73e6d7ad8c1826afc0",
+            "flow": {
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "protocol": "UDP",
+              "source_port": 40000,
+              "destination_port": 53
+            },
+            "threat_class": "volumetric_udp_anomaly",
+            "severity": "high",
+            "score": 0.75,
+            "score_method": "matched_signals_fraction",
+            "detector_source": "rule.volumetric_udp_anomaly",
+            "detection_method": "rule",
+            "evidence": {
+              "packet_count": 2.0,
+              "udp_fraction": 1.0,
+              "packets_per_sec": 200.0,
+              "bytes_per_sec": 48400.0
+            },
+            "feature_values": {
+              "packet_count": 2.0,
+              "udp_fraction": 1.0,
+              "packets_per_sec": 200.0,
+              "bytes_per_sec": 48400.0
+            },
+            "explanation": "Deterministic rule detector matched 3/4 configured signals: the observed window is predominantly UDP and meets volume thresholds; this is a heuristic score, not a probability or trained-model confidence."
+          }
+        ],
+        "detectors": {
+          "ml_status": "offline_experiment_not_loaded",
+          "detectors": {
+            "VolumetricUdpDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 1,
+              "alerts_suppressed": 98
+            },
+            "ReconnaissanceDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "BeaconingDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 1,
+              "alerts_suppressed": 94
+            },
+            "DnsAnomalyDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ExfiltrationVolumeDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "EncryptedSessionDetector": {
+              "evaluations": 100,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            }
+          }
+        },
+        "sse_alert_received": true,
+        "sse_alert": {
+          "timestamp": "2023-11-14T22:13:20.010000+00:00",
+          "alert_id": "b432ea8de7d3165d208dd1e362c6115eeafdbb93ef1b3432d068db22959e9276",
+          "flow_id": "4d9ca9e9371c16c92f9b2acbddafa2548340fff3e3494c73e6d7ad8c1826afc0",
+          "flow": {
+            "source_ip": "192.0.2.16",
+            "destination_ip": "198.51.100.32",
+            "protocol": "UDP",
+            "source_port": 40000,
+            "destination_port": 53
+          },
+          "threat_class": "volumetric_udp_anomaly",
+          "severity": "high",
+          "score": 0.75,
+          "score_method": "matched_signals_fraction",
+          "detector_source": "rule.volumetric_udp_anomaly",
+          "detection_method": "rule",
+          "evidence": {
+            "packet_count": 2.0,
+            "udp_fraction": 1.0,
+            "packets_per_sec": 200.0,
+            "bytes_per_sec": 48400.0
+          },
+          "feature_values": {
+            "packet_count": 2.0,
+            "udp_fraction": 1.0,
+            "packets_per_sec": 200.0,
+            "bytes_per_sec": 48400.0
+          },
+          "explanation": "Deterministic rule detector matched 3/4 configured signals: the observed window is predominantly UDP and meets volume thresholds; this is a heuristic score, not a probability or trained-model confidence."
+        }
+      }
+    },
+    "port_scanning": {
+      "result": {
+        "status": "unsupported_current_implementation",
+        "detected_classes": [],
+        "expected_classes": [],
+        "limitation": "unsupported: destination-port fan-out is split into separate directional flows by the current FlowKey",
+        "evidence_present": true,
+        "api_alert_count": 0,
+        "sse_alert_received": false
+      },
+      "details": {
+        "scenario": "port_scanning",
+        "pcap": "artifacts\\live_test\\port_scanning.pcap",
+        "ingest": {
+          "packets_processed": 20,
+          "alerts_emitted": 0,
+          "active_flow_count": 20
+        },
+        "traffic": {
+          "packet_count": 20,
+          "byte_count": 840,
+          "protocol_distribution": {
+            "UDP": 20
+          },
+          "last_seen": "2023-11-14T22:13:20+00:00"
+        },
+        "flows": {
+          "active_flow_count": 20,
+          "flows": [
+            {
+              "flow_id": "0ce8f4539813384fe5264171ac4b2207ec621649f1aa8c740cf997ba43d3f422",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 20,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "4a89de2f33461a4e39bf2a555b5b079609dde6eb99b9be180c943050fa1b7bf4",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 21,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "10ecac2c2e58c1db80ee4efa5527fb61dd14a278f4e7cf9dbdef96495e11fd22",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 22,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "7ae81e87faf1b740c9f79efb6a01a715257d072e7429b8a9e02e9827c37a5080",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 23,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "d0cd3ee64a5b495cbf13297c43b624180cd9e068c6bf12de20c0b5ec4b56f03a",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 24,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "a2c5ddd49402a7686c797bc45001632f5c71577ff1d40ffec9ad03d85ea6a2fd",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 25,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "89b7638e62710a63eee6d28ca76a3c2756e9559d4ae08ff1f763252a533ddece",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 26,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "2f2979b4483bdaf578a1115c6e1b8bef15416ef83fc3e5a71067575dfe4b2271",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 27,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "f9b9c96b8f2f4265e0b29a9182bc90df3fd9e90b6141bef2475a9b6bb4f045a5",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 28,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "6b64675c8b86f3f44467e109256bdfb6286b915ba1340a33a2c7bd6ee111cf4d",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 29,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "e5e6e46c3a285730fe3fd72d0830b3ba5989c27fb30f46e648f78b6d9d31b443",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 30,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "82044bdbd274ecab4c94562f38dea96adb5ced8719d02a2206099cd237847bf0",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 31,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "ec8ee594f15d28eee5e138b5486379afaaa25693edd63a6f21721671483e8f30",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 32,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "1bdfb78efaed7f582d75b4e96636cacb4c8c3e182aadb5a5a50d59f7d840adfa",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 33,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "497e977bac9eb01e98ebc251ecacbc3717a9e67e6fc2b6ccfaeda47e33ff8a72",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 34,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "382e74b491cb7848a820de036dada16d6ed2bbd3faaa3f50eda944d50c59fa55",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 35,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "5866761d9bbb9e40f2ca5290879b4a19ac8c943233dc9eafb7069cabdf0eeb18",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 36,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "117bcbe40528e7e61d058075aa70ee57ed5ae63b9dd2809e415ee4cefde471da",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 37,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "f26c1aece5acc452e8b5e3ddc3e100860e7005d9f80a95e69430eb04ed5ff34e",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 38,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            },
+            {
+              "flow_id": "bd3aac7a76b3f212a1e5a848930e8be361a65080aed119a0bca33d3851ecd134",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 39,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:13:20+00:00",
+              "duration_seconds": 0.0,
+              "packet_count": 1,
+              "byte_count": 42
+            }
+          ]
+        },
+        "alerts": [],
+        "detectors": {
+          "ml_status": "offline_experiment_not_loaded",
+          "detectors": {
+            "VolumetricUdpDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ReconnaissanceDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "BeaconingDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "DnsAnomalyDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ExfiltrationVolumeDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "EncryptedSessionDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            }
+          }
+        },
+        "sse_alert_received": false,
+        "sse_alert": null
+      }
+    },
+    "c2_beaconing": {
+      "result": {
+        "status": "detected",
+        "detected_classes": [
+          "c2_beaconing_periodicity"
+        ],
+        "expected_classes": [
+          "c2_beaconing_periodicity"
+        ],
+        "limitation": null,
+        "evidence_present": true,
+        "api_alert_count": 1,
+        "sse_alert_received": true
+      },
+      "details": {
+        "scenario": "c2_beaconing",
+        "pcap": "artifacts\\live_test\\c2_beaconing.pcap",
+        "ingest": {
+          "packets_processed": 12,
+          "alerts_emitted": 1,
+          "active_flow_count": 1
+        },
+        "traffic": {
+          "packet_count": 12,
+          "byte_count": 888,
+          "protocol_distribution": {
+            "TCP": 12
+          },
+          "last_seen": "2023-11-14T22:15:10+00:00"
+        },
+        "flows": {
+          "active_flow_count": 1,
+          "flows": [
+            {
+              "flow_id": "039ad0a414bb64d1642ba20934c6154bf44f70f981327361379d4f0416629e56",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 443,
+              "protocol": "TCP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:15:10+00:00",
+              "duration_seconds": 110.0,
+              "packet_count": 12,
+              "byte_count": 888
+            }
+          ]
+        },
+        "alerts": [
+          {
+            "timestamp": "2023-11-14T22:14:10+00:00",
+            "alert_id": "d196c650ebe5b7d4a52027f31a1f449fbfbf575cb2e4ae3352a8056dc2b2a6af",
+            "flow_id": "039ad0a414bb64d1642ba20934c6154bf44f70f981327361379d4f0416629e56",
+            "flow": {
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "protocol": "TCP",
+              "source_port": 40000,
+              "destination_port": 443
+            },
+            "threat_class": "c2_beaconing_periodicity",
+            "severity": "critical",
+            "score": 1.0,
+            "score_method": "matched_signals_fraction",
+            "detector_source": "statistical.c2_beaconing_periodicity",
+            "detection_method": "statistical",
+            "evidence": {
+              "packet_count": 6.0,
+              "mean_inter_arrival_time": 10.0,
+              "inter_arrival_variation": 0.0,
+              "inter_arrival_coefficient": 0.0
+            },
+            "feature_values": {
+              "packet_count": 6.0,
+              "mean_inter_arrival_time": 10.0,
+              "inter_arrival_variation": 0.0,
+              "inter_arrival_coefficient": 0.0
+            },
+            "explanation": "Deterministic statistical detector matched 2/2 configured signals: the observed inter-arrival times have low relative variation; this is a heuristic score, not a probability or trained-model confidence."
+          }
+        ],
+        "detectors": {
+          "ml_status": "offline_experiment_not_loaded",
+          "detectors": {
+            "VolumetricUdpDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ReconnaissanceDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "BeaconingDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 1,
+              "alerts_suppressed": 6
+            },
+            "DnsAnomalyDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ExfiltrationVolumeDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "EncryptedSessionDetector": {
+              "evaluations": 12,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            }
+          }
+        },
+        "sse_alert_received": true,
+        "sse_alert": {
+          "timestamp": "2023-11-14T22:14:10+00:00",
+          "alert_id": "d196c650ebe5b7d4a52027f31a1f449fbfbf575cb2e4ae3352a8056dc2b2a6af",
+          "flow_id": "039ad0a414bb64d1642ba20934c6154bf44f70f981327361379d4f0416629e56",
+          "flow": {
+            "source_ip": "192.0.2.16",
+            "destination_ip": "198.51.100.32",
+            "protocol": "TCP",
+            "source_port": 40000,
+            "destination_port": 443
+          },
+          "threat_class": "c2_beaconing_periodicity",
+          "severity": "critical",
+          "score": 1.0,
+          "score_method": "matched_signals_fraction",
+          "detector_source": "statistical.c2_beaconing_periodicity",
+          "detection_method": "statistical",
+          "evidence": {
+            "packet_count": 6.0,
+            "mean_inter_arrival_time": 10.0,
+            "inter_arrival_variation": 0.0,
+            "inter_arrival_coefficient": 0.0
+          },
+          "feature_values": {
+            "packet_count": 6.0,
+            "mean_inter_arrival_time": 10.0,
+            "inter_arrival_variation": 0.0,
+            "inter_arrival_coefficient": 0.0
+          },
+          "explanation": "Deterministic statistical detector matched 2/2 configured signals: the observed inter-arrival times have low relative variation; this is a heuristic score, not a probability or trained-model confidence."
+        }
+      }
+    },
+    "dns_anomaly": {
+      "result": {
+        "status": "unsupported_current_implementation",
+        "detected_classes": [],
+        "expected_classes": [],
+        "limitation": "unsupported: classic PCAP ingestion does not currently populate dns_query metadata",
+        "evidence_present": true,
+        "api_alert_count": 0,
+        "sse_alert_received": false
+      },
+      "details": {
+        "scenario": "dns_anomaly",
+        "pcap": "artifacts\\live_test\\dns_anomaly.pcap",
+        "ingest": {
+          "packets_processed": 20,
+          "alerts_emitted": 0,
+          "active_flow_count": 1
+        },
+        "traffic": {
+          "packet_count": 20,
+          "byte_count": 2440,
+          "protocol_distribution": {
+            "UDP": 20
+          },
+          "last_seen": "2023-11-14T22:14:06+00:00"
+        },
+        "flows": {
+          "active_flow_count": 1,
+          "flows": [
+            {
+              "flow_id": "4d9ca9e9371c16c92f9b2acbddafa2548340fff3e3494c73e6d7ad8c1826afc0",
+              "source_ip": "192.0.2.16",
+              "destination_ip": "198.51.100.32",
+              "source_port": 40000,
+              "destination_port": 53,
+              "protocol": "UDP",
+              "first_seen": "2023-11-14T22:13:20+00:00",
+              "last_seen": "2023-11-14T22:14:06+00:00",
+              "duration_seconds": 46.0,
+              "packet_count": 20,
+              "byte_count": 2440
+            }
+          ]
+        },
+        "alerts": [],
+        "detectors": {
+          "ml_status": "offline_experiment_not_loaded",
+          "detectors": {
+            "VolumetricUdpDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ReconnaissanceDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "BeaconingDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "DnsAnomalyDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "ExfiltrationVolumeDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            },
+            "EncryptedSessionDetector": {
+              "evaluations": 20,
+              "alerts_emitted": 0,
+              "alerts_suppressed": 0
+            }
+          }
+        },
+        "sse_alert_received": false,
+        "sse_alert": null
+      }
+    }
+  }
+}
